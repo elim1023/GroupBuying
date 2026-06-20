@@ -1,0 +1,7 @@
+flask
+flask_caching
+flask_sqlalchemy
+requests
+gunicorn
+python-dotenv
+openai

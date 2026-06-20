@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>註冊</h2>
+
+<form method="POST">
+
+    <input
+        type="text"
+        name="username"
+        placeholder="帳號"
+        required>
+
+    <br><br>
+
+    <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        required>
+
+    <br><br>
+
+    <input
+        type="password"
+        name="password"
+        placeholder="密碼"
+        required>
+
+    <br><br>
+
+    <button type="submit">
+        註冊
+    </button>
+
+</form>
+
+{% endblock %}

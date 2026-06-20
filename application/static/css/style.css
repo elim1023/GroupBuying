@@ -1,0 +1,56 @@
+body {
+    font-family: Arial;
+    margin: 0;
+}
+
+nav {
+    background: #4A90E2;
+    color: white;
+    padding: 20px;
+}
+
+.container {
+    padding: 40px;
+}
+
+.card-container {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 50px;
+
+    margin-top: 50px;
+}
+
+.card {
+
+    border: 1px solid #ddd;
+
+    padding: 30px;
+
+    width: 300px;
+
+    text-align: center;
+
+    border-radius: 10px;
+
+    box-shadow:
+      0 0 10px rgba(0,0,0,0.1);
+}
+
+button {
+
+    background: #4A90E2;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px 20px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}

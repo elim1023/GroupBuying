@@ -14,13 +14,13 @@ from application.helpers import *
 load_dotenv()
 app = Flask(__name__)
 # app.secret_key = "groupbuy_secret"
-# app.config[
-#     'SQLALCHEMY_DATABASE_URI'
-# ] = 'sqlite:///groupbuy.db'
-
 app.config[
     'SQLALCHEMY_DATABASE_URI'
-] = os.environ["DATABASE_URL"]
+] = 'sqlite:///groupbuy.db'
+
+# app.config[
+#     'SQLALCHEMY_DATABASE_URI'
+# ] = os.environ["DATABASE_URL"]
 
 app.config[
     "SQLALCHEMY_TRACK_MODIFICATIONS"
@@ -118,17 +118,13 @@ def login():
         "login.html"
     )
 
-# @app.route("/dashboard")
-# def dashboard():
+@app.route("/logout")
+def logout():
 
-#     if "user_id" not in session:
+    session.clear()
 
-#         return redirect("/login")
+    return redirect("/")
 
-#     return render_template(
-#         "dashboard.html",
-#         username=session["username"]
-#     )
 
 @app.route("/create-groupbuy", methods=["GET", "POST"])
 def create_groupbuy():
@@ -148,41 +144,41 @@ def create_groupbuy():
         return redirect(url_for("home"))
     return render_template("create_groupbuy.html")
 
-@app.route("/logout")
-def logout():
+@app.route("/groupbuy/<int:groupbuy_id>", methods=["GET", "POST"])
+def groupbuy_detail(groupbuy_id):
 
-    session.clear()
+    groupbuy = GroupBuy.query.get_or_404(groupbuy_id)
+    
+    if request.method == "POST":
 
-    return redirect("/")
+        if "user_id" not in session:
+            return redirect(url_for("login"))
+        
+        order = Order(
+            user_id=session["user_id"],
+            groupbuy_id=groupbuy_id,
+            quantity=int(request.form["quantity"]),
+            remark=request.form["remark"],
+            # delivery_info=request.form["delivery_info"]
+        )
+
+        db.session.add(order)
+
+        groupbuy.participants += 1
+
+        db.session.commit()
+
+        return redirect(url_for("groupbuy_detail", groupbuy_id=groupbuy_id))
+
+    return render_template("groupbuy_detail.html", groupbuy=groupbuy)
+
 
 
 # @cache.cached()
-# @app.route("/organizer/login")
-# def organizer_login():
-#     return render_template(
-#         "organizer_login.html"
-#     )
-
-
-# @app.route("/consumer/login")
-# def consumer_login():
-#     return render_template(
-#         "consumer_login.html"
-#     )
-
 
 # @app.route("/organizer/dashboard")
-# def organizer_dashboard():
-#     return render_template(
-#         "organizer_dashboard.html"
-#     )
-
 
 # @app.route("/consumer/dashboard")
-# def consumer_dashboard():
-#     return render_template(
-#         "consumer_dashboard.html"
-#     )
 
 
 if __name__ == "__main__":

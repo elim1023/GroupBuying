@@ -29,44 +29,6 @@
     <a href="{{ url_for('login') }}">
         登入
     </a>
-    <!-- <div class="card">
-
-        <h2>消費者</h2>
-
-        <p>
-            查看團購商品、
-            管理訂單紀錄
-        </p>
-
-        <a href="/consumer/login">
-
-            <button>
-                我是消費者
-            </button>
-
-        </a>
-
-    </div>
-
-    <div class="card">
-
-        <h2>團購主</h2>
-
-        <p>
-            建立團購、
-            管理訂單
-        </p>
-
-        <a href="/organizer/login">
-
-            <button>
-                我是團購主
-            </button>
-
-        </a>
-
-    </div> -->
-
 </div>
 
 {% for item in groupbuys %}
@@ -74,16 +36,13 @@
 <div class="card">
 
     <img src="{{ item.image_url }}" width="200">
-
     <h3>{{ item.title }}</h3>
-
     <p>{{ item.description }}</p>
-
     <p>{{ item.deadline }}</p>
-
     <p>{{ item.participants }} 人參與</p>
-
-    <button>查看團購</button>
+    <a class="btn" href="{{ url_for('groupbuy_detail', groupbuy_id=item.id)}}">
+        查看團購
+    </a>
 
 </div>
 

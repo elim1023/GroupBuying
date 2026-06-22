@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>
+
+    {{ groupbuy.title }}
+
+</h1>
+
+<img
+    src="{{ groupbuy.image_url }}"
+    width="300"
+>
+
+<p>
+
+    {{ groupbuy.description }}
+
+</p>
+
+<p>
+
+    截止日期： {{ groupbuy.deadline }}
+
+</p>
+
+<p>
+
+    參與人數： {{ groupbuy.participants }}
+
+</p>
+
+<p>
+
+    取貨方式： {{ groupbuy.delivery_method }}
+
+</p>
+
+
+<hr>
+
+<form method="POST">
+
+    <label>數量：</label>
+
+    <input
+        type="number"
+        name="quantity"
+        min="1"
+        value="1"
+        required
+    >
+
+    <br><br>
+
+    <label>備註：</label>
+
+    <textarea
+        name="remark"
+    ></textarea>
+
+    <!-- <br><br> -->
+
+    <!-- <label>取貨資訊：</label> -->
+
+    <!-- <input
+        type="text"
+        name="delivery_info"
+    > -->
+
+    <br><br>
+
+    <button type="submit">
+        我要跟團
+    </button>
+
+</form>
+
+{% endblock %}

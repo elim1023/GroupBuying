@@ -7,16 +7,20 @@ from flask_caching import Cache
 from werkzeug.security import generate_password_hash, check_password_hash
 from application.models import db, User, GroupBuy, Order
 # from flask_sqlalchemy import SQLAlchemy
-# from application.helpers import *
+from application.helpers import *
 
 # app = Flask(__name__, template_folder=TEMPLATES_PATH)
 
 load_dotenv()
 app = Flask(__name__)
 # app.secret_key = "groupbuy_secret"
+# app.config[
+#     'SQLALCHEMY_DATABASE_URI'
+# ] = 'sqlite:///groupbuy.db'
+
 app.config[
     'SQLALCHEMY_DATABASE_URI'
-] = 'sqlite:///groupbuy.db'
+] = os.environ["DATABASE_URL"]
 
 app.config[
     "SQLALCHEMY_TRACK_MODIFICATIONS"
@@ -107,24 +111,42 @@ def login():
         session["username"] = user.username
 
         return redirect(
-            url_for("dashboard")
+            url_for("home")
         )
 
     return render_template(
         "login.html"
     )
 
-@app.route("/dashboard")
-def dashboard():
+# @app.route("/dashboard")
+# def dashboard():
 
+#     if "user_id" not in session:
+
+#         return redirect("/login")
+
+#     return render_template(
+#         "dashboard.html",
+#         username=session["username"]
+#     )
+
+@app.route("/create-groupbuy", methods=["GET", "POST"])
+def create_groupbuy():
     if "user_id" not in session:
-
-        return redirect("/login")
-
-    return render_template(
-        "dashboard.html",
-        username=session["username"]
-    )
+        return redirect(url_for("login"))
+    
+    if request.method == "POST":
+        add_groupbuy(    
+            request.form["title"],
+            request.form["image_url"],
+            request.form["description"],
+            request.form["product_url"],
+            request.form["deadline"],
+            request.form["delivery_method"],
+            session["user_id"]
+        )
+        return redirect(url_for("home"))
+    return render_template("create_groupbuy.html")
 
 @app.route("/logout")
 def logout():

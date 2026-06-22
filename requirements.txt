@@ -1,6 +1,7 @@
 flask
 flask_caching
 flask_sqlalchemy
+psycopg2
 requests
 gunicorn
 python-dotenv

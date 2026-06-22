@@ -51,6 +51,10 @@ class GroupBuy(db.Model):
         db.String(500)
     )
 
+    product_url = db.Column(
+        db.String(500)
+    )
+
     description = db.Column(
         db.Text
     )

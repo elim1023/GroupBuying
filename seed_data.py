@@ -9,7 +9,7 @@ with app.app_context():
             image_url="https://cielor.store/cdn/shop/files/PassportBlack.png?v=1779843105&width=400",
             description="一起買咖啡比較便宜",
             deadline="剩餘3天",
-            organizer_id=2,
+            organizer_id=1,
             participants=12,
             delivery_method="送貨到府"
         ),

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>我的訂單</h1>
+
+{% for order in orders %}
+
+<div class="card">
+
+    <h3>
+
+        {{ order.groupbuy.title }}
+
+    </h3>
+
+    <p>
+
+        數量：
+
+        {{ order.quantity }}
+
+    </p>
+
+    <p>
+
+        備註：
+
+        {{ order.remark }}
+
+    </p>
+
+    <p>
+
+        取貨資訊：
+
+        {{ order.delivery_info }}
+
+    </p>
+
+    <a href="{{ url_for('groupbuy_detail', groupbuy_id=order.groupbuy.id) }}">
+        查看商品
+    </a>
+
+    <br>
+
+    <a href="{{ url_for('edit_order', order_id=order.id) }}">
+        修改訂單
+    </a>
+
+    <!-- <a href="{{ url_for('delete_order', order_id=order.id) }}" onclick="return confirm('確定要取消跟團嗎？')">
+        取消跟團
+    </a> -->
+    <form action="{{ url_for('delete_order', order_id=order.id) }}"
+            method="POST"
+            onsubmit="return confirm('確定要取消跟團嗎？')"
+    >
+
+        <button type="submit">取消跟團</button>
+
+    </form>
+
+</div>
+
+<hr>
+
+{% else %}
+
+<p>
+
+    尚未參與任何團購
+
+</p>
+
+{% endfor %}
+
+{% endblock %}

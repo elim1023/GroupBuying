@@ -101,6 +101,10 @@ class Order(db.Model):
         db.String(255)
     )
 
+    # delivery_info = db.Column(
+    #     db.String(255)
+    # )
+
     user_id = db.Column(
         db.Integer,
         db.ForeignKey("users.id"),
@@ -113,3 +117,12 @@ class Order(db.Model):
         nullable=False
     )
 
+    user = db.relationship(
+        "User",
+        backref="orders"
+    )
+
+    groupbuy = db.relationship(
+        "GroupBuy",
+        backref="orders"
+    )

@@ -172,6 +172,86 @@ def groupbuy_detail(groupbuy_id):
 
     return render_template("groupbuy_detail.html", groupbuy=groupbuy)
 
+# 查看參與的團購
+@app.route("/my-orders")
+def my_orders():
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
+    orders = Order.query.filter_by(user_id=session["user_id"]).all()
+
+    return render_template("my_orders.html", orders=orders)
+
+# 查看自己建立的團購
+@app.route("/my-groupbuys")
+def my_groupbuys():
+
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
+    groupbuys = GroupBuy.query.filter_by(organizer_id=session["user_id"]).all()
+
+    return render_template("my_groupbuys.html", groupbuys=groupbuys)
+
+# 查看團購的跟團者
+@app.route("/groupbuy/<int:groupbuy_id>/orders")
+def groupbuy_orders(groupbuy_id):
+
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
+    groupbuy = GroupBuy.query.get_or_404(groupbuy_id)
+
+    # 防止別人查看你的團購
+    if groupbuy.organizer_id != session["user_id"]:
+        return redirect(url_for("home"))
+
+    return render_template(
+        "groupbuy_orders.html",
+        groupbuy=groupbuy
+    )
+
+# 修改自己的訂單
+@app.route("/order/<int:order_id>/edit", methods=["GET", "POST"])
+def edit_order(order_id):
+
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
+    order = Order.query.get_or_404(order_id)
+
+    # 防止修改別人的訂單
+    if order.user_id != session["user_id"]:
+        return redirect(url_for("my_orders"))
+
+    if request.method == "POST":
+
+        order.quantity = int(request.form["quantity"])
+        order.remark = request.form["remark"]
+        order.delivery_info = request.form["delivery_info"]
+
+        db.session.commit()
+
+        return redirect(url_for("my_orders"))
+
+    return render_template("edit_order.html", order=order)
+
+# 刪除訂單
+@app.route("/order/<int:order_id>/delete", methods=["POST"])
+def delete_order(order_id):
+
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
+    order = Order.query.get_or_404(order_id)
+
+    if order.user_id != session["user_id"]:
+        return redirect(url_for("my_orders"))
+
+    db.session.delete(order)
+    db.session.commit()
+
+    return redirect(url_for("my_orders"))
 
 
 # @cache.cached()

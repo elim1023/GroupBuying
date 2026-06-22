@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>
+
+    {{ groupbuy.title }}
+
+</h1>
+
+<h2>
+
+    跟團名單
+
+</h2>
+
+{% for order in groupbuy.orders %}
+
+<div class="card">
+
+    <h3>
+
+        {{ order.user.username }}
+
+    </h3>
+
+    <p>
+
+        數量：
+
+        {{ order.quantity }}
+
+    </p>
+
+    <p>
+
+        備註：
+
+        {{ order.remark }}
+
+    </p>
+
+    <p>
+
+        取貨資訊：
+
+        {{ order.delivery_info }}
+
+    </p>
+
+</div>
+
+<hr>
+
+{% else %}
+
+<p>
+
+    尚無人跟團
+
+</p>
+
+{% endfor %}
+
+{% endblock %}

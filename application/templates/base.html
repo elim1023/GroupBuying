@@ -16,14 +16,56 @@
 
     <nav>
 
-        <h2>Group Buying</h2>
+        <div class="menu-btn">
+            ☰
+        </div>
+
+        <div class="logo">
+
+            <a href="{{ url_for('home') }}">
+                Group Buying
+            </a>
+
+        </div>
+
+        <div class="user-btn">
+            👤
+        </div>
 
     </nav>
 
-    <div class="container">
+    <div class="layout">
 
-        {% block content %}
-        {% endblock %}
+        <aside class="sidebar">
+
+            <a href="{{ url_for('home') }}">
+                首頁
+            </a>
+
+            <a href="#">
+                建立團購
+            </a>
+
+            <a href="#">
+                我的團購
+            </a>
+
+            <a href="#">
+                我的訂單
+            </a>
+
+            <a href="#">
+                個人資料
+            </a>
+
+        </aside>
+
+        <main class="content">
+
+            {% block content %}
+            {% endblock %}
+
+        </main>
 
     </div>
 

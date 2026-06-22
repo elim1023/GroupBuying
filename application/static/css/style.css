@@ -1,12 +1,17 @@
 body {
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     margin: 0;
 }
 
 nav {
-    background: #4A90E2;
+    height:60px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background: #f8f6e2;
     color: white;
-    padding: 20px;
+    padding:0 20px;
+    border-bottom:1px solid #ddd;
 }
 
 .container {
@@ -53,4 +58,52 @@ button {
     border-radius: 5px;
 
     cursor: pointer;
+}
+
+
+
+.logo a{
+    text-decoration:none;
+    color:black;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.layout{
+    display:flex;
+}
+
+.sidebar{
+
+    width:220px;
+
+    min-height:calc(100vh - 60px);
+
+    border-right:1px solid #ddd;
+
+    padding-top:20px;
+
+}
+
+.sidebar a{
+
+    display:block;
+
+    padding:15px 20px;
+
+    text-decoration:none;
+
+    color:black;
+}
+
+.sidebar a:hover{
+
+    background:#f5f5f5;
+}
+
+.content{
+
+    flex:1;
+
+    padding:20px;
 }

@@ -73,4 +73,26 @@
 
 </div>
 
+{% for item in groupbuys %}
+
+<div class="card">
+
+    <img src="{{ item.image_url }}" width="250">
+
+    <h3>{{ item.title }}</h3>
+
+    <p>{{ item.description }}</p>
+
+    <p>{{ item.deadline }}</p>
+
+    <p>{{ item.participants }} 人參與</p>
+
+    <button>查看團購</button>
+
+</div>
+
+<hr>
+
+{% endfor %}
+
 {% endblock %}

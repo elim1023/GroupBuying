@@ -5,7 +5,7 @@ from flask import Flask, render_template, request, redirect, session, url_for
 from flask_caching import Cache
 # from config import TEMPLATES_PATH, TEXT_PATH
 from werkzeug.security import generate_password_hash, check_password_hash
-from application.models import db, User
+from application.models import db, User, GroupBuy, Order
 # from flask_sqlalchemy import SQLAlchemy
 # from application.helpers import *
 
@@ -34,7 +34,8 @@ app.secret_key = os.environ["SECRET_KEY"]
 
 @app.route("/")
 def home():
-    return render_template("home.html")
+    groupbuys = GroupBuy.query.all()
+    return render_template("home.html", groupbuys=groupbuys)
 
 @app.route("/register", methods=["GET", "POST"])
 def register():

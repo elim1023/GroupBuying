@@ -29,43 +29,83 @@ class User(db.Model):
         nullable=False
     )
 
+    phone = db.Column(
+        db.String(20)
+    )
 
-# print("models.py 開始")
+class GroupBuy(db.Model):
 
-# from flask_sqlalchemy import SQLAlchemy
+    __tablename__ = "groupbuys"
 
-# print("SQLAlchemy import 完成")
+    id = db.Column(
+        db.Integer,
+        primary_key=True
+    )
 
-# db = SQLAlchemy()
+    title = db.Column(
+        db.String(100),
+        nullable=False
+    )
 
-# print("db 建立完成")
+    image_url = db.Column(
+        db.String(500)
+    )
 
-# class User(db.Model):
+    description = db.Column(
+        db.Text
+    )
 
-#     print("User class 建立中")
+    deadline = db.Column(
+        db.String(50)
+    )
 
-#     __tablename__ = 'users'
+    organizer_id = db.Column(
+        db.Integer,
+        db.ForeignKey("users.id"),
+        nullable=False
+    )
 
-#     id = db.Column(
-#         db.Integer,
-#         primary_key=True
-#     )
+    participants = db.Column(
+        db.Integer,
+        default=0
+    )
 
-#     username = db.Column(
-#         db.String(50),
-#         nullable=False,
-#         unique=True
-#     )
+    delivery_method = db.Column(
+        db.String(50)
+    )
 
-#     email = db.Column(
-#         db.String(100),
-#         nullable=False,
-#         unique=True
-#     )
+    status = db.Column(
+        db.String(20),
+        default="open"
+    )
 
-#     password_hash = db.Column(
-#         db.String(255),
-#         nullable=False
-#     )
+class Order(db.Model):
 
-# print("models.py 結束")
+    __tablename__ = "orders"
+
+    id = db.Column(
+        db.Integer,
+        primary_key=True
+    )
+
+    quantity = db.Column(
+        db.Integer,
+        nullable=False
+    )
+
+    remark = db.Column(
+        db.String(255)
+    )
+
+    user_id = db.Column(
+        db.Integer,
+        db.ForeignKey("users.id"),
+        nullable=False
+    )
+
+    groupbuy_id = db.Column(
+        db.Integer,
+        db.ForeignKey("groupbuys.id"),
+        nullable=False
+    )
+

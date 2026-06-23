@@ -16,7 +16,7 @@
 
     <nav>
 
-        <div class="menu-btn">
+        <div class="menu-btn" onclick="toggleSidebar()">
             ☰
         </div>
 
@@ -27,36 +27,80 @@
             </a>
 
         </div>
+        <div class="user-menu">
+            <div class="user-btn" onclick="toggleUserMenu()">
+                <!-- 👤 -->
+                 <svg width="40" height="40" viewBox="0 0 120 120" fill="none"
+                    xmlns="http://www.w3.org/2000/svg" display="block">
+                    <circle cx="60" cy="60" r="55" stroke="#333" stroke-width="3"/>
+                    <circle cx="60" cy="42" r="18" stroke="#333" stroke-width="3"/>
+                    <path d="M30 90C30 72 43 62 60 62C77 62 90 72 90 90"
+                        stroke="#333"
+                        stroke-width="3"
+                        stroke-linecap="round"/>
+                </svg>
 
-        <div class="user-btn">
-            👤
+            </div>
+            <div class="dropdown-menu" id="userDropdown">
+                
+                {% if "user_id" in session %}
+                    <div class="user-info">
+                        {{ session["username"] }}
+                        <br>
+
+                        <small>
+                            {% if session["plan"]=="premium" %}
+                                Premium
+                            {% elif session["plan"]=="pro" %}
+                                Pro
+                            {% else %}
+                                免費方案
+                            {% endif %}
+                        </small>
+                        <a href="{{ url_for('pricing') }}">
+                            升級方案
+                        </a>
+                    </div>
+                    <hr>
+
+                    <a href="#">個人資料</a>
+                    <a href="#">設定</a>
+                    <a href="{{ url_for('logout') }}">登出</a>
+
+                {% else %}
+                    <a href="{{ url_for('login') }}">登入</a>
+                    <a href="{{ url_for('register') }}">註冊</a>
+                {% endif %}
+            </div>
         </div>
-
     </nav>
 
     <div class="layout">
+        <aside id="sidebar" class="sidebar collapsed">
+            <div class="group">
 
-        <aside class="sidebar">
+            <div class="group-title" onclick="toggleGroup('buyer')">
+                消費者專區 ▾
+            </div>
 
-            <a href="{{ url_for('home') }}">
-                首頁
-            </a>
+            <div class="group-content" id="buyer">
+                <a href="{{ url_for('my_orders') }}">我的訂單</a>
+            </div>
 
-            <a href="{{ url_for('create_groupbuy') }}">
-                建立團購
-            </a>
+        </div>
 
-            <a href="{{ url_for('my_groupbuys') }}">
-                我的團購
-            </a>
+        <div class="group">
 
-            <a href="{{ url_for('my_orders') }}">
-                我的訂單
-            </a>
+            <div class="group-title" onclick="toggleGroup('seller')">
+                團購主專區 ▾
+            </div>
 
-            <a href="#">
-                個人資料
-            </a>
+            <div class="group-content" id="seller">
+                <a href="{{ url_for('create_groupbuy') }}">建立團購</a>
+                <a href="{{ url_for('my_groupbuys') }}">我的團購</a>
+            </div>
+
+        </div>
 
         </aside>
 
@@ -69,6 +113,35 @@
 
     </div>
 
+    <script>
+        // 整體 sidebar 收合
+        function toggleSidebar() {
+            document.getElementById("sidebar").classList.toggle("collapsed");
+        }
+
+        // 內部分組收合
+        function toggleGroup(id) {
+            const el = document.getElementById(id);
+            el.classList.toggle("hidden");
+        }
+
+        function toggleUserMenu() {
+            const menu = document.getElementById("userDropdown");
+
+            if(menu.style.display==="block"){
+                menu.style.display="none";
+            }
+            else {
+                menu.style.display="block";
+            }
+        }
+
+        window.onclick=function(event){
+            if(!event.target.closest(".user-menu")) {
+                document.getElementById("userDropdown").style.display="none";
+            }
+        }
+    </script>
 </body>
 
 </html>

@@ -1,5 +1,6 @@
 print("models.py 開始")
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import Enum
 
 db = SQLAlchemy()
 
@@ -30,7 +31,19 @@ class User(db.Model):
     )
 
     phone = db.Column(
-        db.String(20)
+        db.String(20),
+        nullable=False,
+    )
+
+    plan = db.Column(
+        Enum(
+            "free",
+            "pro",
+            "business",
+            name="plan_type"
+        ),
+        nullable=False,
+        default="free"
     )
 
 class GroupBuy(db.Model):

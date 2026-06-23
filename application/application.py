@@ -6,14 +6,13 @@ from flask_caching import Cache
 # from config import TEMPLATES_PATH, TEXT_PATH
 from werkzeug.security import generate_password_hash, check_password_hash
 from application.models import db, User, GroupBuy, Order
-# from flask_sqlalchemy import SQLAlchemy
 from application.helpers import *
 
 # app = Flask(__name__, template_folder=TEMPLATES_PATH)
 
 load_dotenv()
 app = Flask(__name__)
-# app.secret_key = "groupbuy_secret"
+
 app.config[
     'SQLALCHEMY_DATABASE_URI'
 ] = 'sqlite:///groupbuy.db'
@@ -30,7 +29,6 @@ app.config["CACHE_TYPE"] = "simple"
 app.config["CACHE_DEFAULT_TIMEOUT"] = 3600
 cache = Cache(app)
 
-# db = SQLAlchemy()
 db.init_app(app)
 
 app.secret_key = os.environ["SECRET_KEY"]
@@ -49,6 +47,7 @@ def register():
         username = request.form["username"]
         email = request.form["email"]
         password = request.form["password"]
+        phone = request.form["phone"]
 
         existing_user = User.query.filter(
             (
@@ -72,7 +71,8 @@ def register():
         user = User(
             username=username,
             email=email,
-            password_hash=hashed_password
+            password_hash=hashed_password,
+            phone=phone
         )
 
         db.session.add(user)
@@ -253,6 +253,9 @@ def delete_order(order_id):
 
     return redirect(url_for("my_orders"))
 
+@app.route("/pricing")
+def pricing():
+    return render_template("pricing.html")
 
 # @cache.cached()
 

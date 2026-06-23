@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="page_name">方案選擇</h1>
+
+<div class="pricing-container">
+    <div class="plan-card">
+        <h2>免費版</h2>
+        <h1>NT$0</h1>
+        <p>建立團購</p>
+        <p>參與團購</p>
+        <p>查看訂單</p>
+        <div>
+            適用對象：小型團購主
+        <br>
+            提供功能：
+        <br>
+            每月最多建立3個團購活動
+            <br>
+            基本訂單管理功能
+            <br>
+            最多管理 100 筆訂單
+        </div>
+    </div>
+
+    <div class="plan-card premium">
+        <h2>Pro</h2>
+        <h1>NT$199/月</h1>
+        <p>無限建立團購</p>
+        <p>優先曝光</p>
+        <p>數據分析</p>
+        <p>Excel 匯出</p>
+
+        <button>
+            升級 Premium
+        </button>
+
+        <div>
+            適用對象：
+常開團的個人團購主
+
+提供功能：
+無限制建立團購活動
+訂單分析報表
+匯出 Excel 功能
+自動通知服務
+
+
+        </div>
+
+    </div>
+
+    <div class="plan-card premium">
+        <h2>Business</h2>
+        <h1>NT$599/月</h1>
+        <p>適用對象：大型社團、商家、代購業者</p>
+        <p>多位管理員權限</p>
+        <p>消費者行為分析</p>
+        <p>專屬客服支援</p>
+
+        <button>
+            升級 Premium
+        </button>
+
+    </div>
+
+</div>
+
+{% endblock %}

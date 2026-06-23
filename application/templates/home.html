@@ -9,28 +9,6 @@
 一站式團購管理平台
 </p>
 
-<div class="card-container">
-
-    <h3>歡迎</h3>
-
-    <br><br>
-
-    <a href="{{ url_for('logout') }}">
-        登出
-    </a>
-
-
-    <a href="{{ url_for('register') }}">
-        註冊
-    </a>
-
-    <br><br>
-
-    <a href="{{ url_for('login') }}">
-        登入
-    </a>
-</div>
-
 {% for item in groupbuys %}
 
 <div class="card">

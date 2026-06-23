@@ -3,7 +3,12 @@ body {
     margin: 0;
 }
 
+/* 最上方的區塊 */
 nav {
+    position : fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
     height:60px;
     display:flex;
     align-items:center;
@@ -12,55 +17,45 @@ nav {
     color: white;
     padding:0 20px;
     border-bottom:1px solid #ddd;
+    box-sizing: border-box;
 }
 
 .container {
     padding: 40px;
 }
 
-.card-container {
-
+/* .card-container {
     display: flex;
-
     justify-content: center;
-
     gap: 50px;
-
     margin-top: 50px;
-}
+} */
 
 .card {
 
     border: 1px solid #ddd;
-
     padding: 30px;
-
     width: 300px;
-
     text-align: center;
-
     border-radius: 10px;
-
-    box-shadow:
-      0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 button {
-
     background: #4A90E2;
-
     color: white;
-
     border: none;
-
     padding: 12px 20px;
-
     border-radius: 5px;
-
     cursor: pointer;
 }
 
-
+.menu-btn {
+    color: #333;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+}
 
 .logo a{
     text-decoration:none;
@@ -69,41 +64,140 @@ button {
     font-weight:bold;
 }
 
+/* 使用者頭貼區塊 */
+.user-menu{
+    position:relative;
+    /* display: flex;
+    justify-content: center;
+    align-items: center;     */
+}
+
+.user-btn {
+    cursor: pointer;
+    /* font-size:24px; */
+}
+
+.dropdown-menu{
+    display:none;
+    position:absolute;
+    right:0;
+    top:50px;
+    width:180px;
+    background:white;
+    border:1px solid #ddd;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.15);
+}
+
+.dropdown-menu a{
+    display:block;
+    padding:12px;
+    text-decoration:none;
+    color:black;
+}
+
+.dropdown-menu a:hover{
+    background:#f3f3f3;
+}
+
+.user-info{
+    padding:15px;
+    text-align:center;
+    color: #000;
+}
+
 .layout{
     display:flex;
+    padding-top: 50px;
 }
 
 .sidebar{
-
+    text-align: center;
     width:220px;
-
     min-height:calc(100vh - 60px);
-
     border-right:1px solid #ddd;
-
     padding-top:20px;
-
+    transition: 0.2s;
+    background: #f8f8f8;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .sidebar a{
-
     display:block;
-
     padding:15px 20px;
-
     text-decoration:none;
-
     color:black;
 }
 
 .sidebar a:hover{
-
     background:#f5f5f5;
 }
 
+.sidebar.collapsed {
+    overflow:scroll;
+    width: 0px;
+}
+
+.sidebar.collapsed .group-title,
+.sidebar.collapsed .group-content {
+    font-size: 0;
+}
+
+/* 主介面 */
 .content{
-
     flex:1;
+    /* 上 左右 下 */
+    /* padding: 50px 30px 20px;  */
+    padding: 0 30px; 
+    
+}
 
-    padding:20px;
+.page_name {
+    text-align: center;
+}
+
+/* .group {
+    display:flex;
+} */
+
+.group-title {
+    /* padding: 10px; */
+    font-weight: bold;
+    cursor: pointer;
+    background: #f5f5f5;
+    margin-top: 10px;
+}
+
+.group-content {
+    display: flex;
+    flex-direction: column;
+    /* padding-left: 15px; */
+    align-items: center;
+    gap: 8px;
+}
+
+
+
+.hidden {
+    display: none;
+}
+
+/* 價格 */
+.pricing-container{
+    display:flex;
+    gap:30px;
+    justify-content:center;
+}
+
+.plan-card{
+    width:300px;
+    padding:30px;
+    border-radius:15px;
+    background:white;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.premium{
+    border:3px solid gold;
 }

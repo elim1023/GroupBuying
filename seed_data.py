@@ -1,9 +1,18 @@
 from application.application import app
 from application.models import db, User, GroupBuy, Order
+from werkzeug.security import generate_password_hash
 
 with app.app_context():
 
     data = [
+        User(
+            username = "Chopper",
+            email = "Chopper@gmail.com",
+            password_hash = generate_password_hash("Chopper"),
+            phone = "0123456789",
+            plan = "business"
+        ),
+
         GroupBuy(
             title="星巴克咖啡團",
             image_url="https://cielor.store/cdn/shop/files/PassportBlack.png?v=1779843105&width=400",
@@ -33,6 +42,7 @@ with app.app_context():
             participants=7,
             delivery_method="送貨到府"
         )
+
     ]
 
     db.session.add_all(data)

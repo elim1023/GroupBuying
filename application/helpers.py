@@ -23,8 +23,9 @@ def is_active(current_path:str, nav_path:str) -> str:
 def add_groupbuy(
         title,
         image_url,
-        description,
         product_url,
+        description,
+        price,
         deadline,
         delivery_method,
         organizer_id):
@@ -32,8 +33,9 @@ def add_groupbuy(
     groupbuy = GroupBuy(
         title=title,
         image_url=image_url,
-        description=description,
         product_url=product_url,
+        description=description,
+        price=price,
         deadline=deadline,
         delivery_method=delivery_method,
         organizer_id=organizer_id

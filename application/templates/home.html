@@ -9,23 +9,25 @@
 一站式團購管理平台
 </p>
 
-{% for item in groupbuys %}
+<div class="card-container">
+    {% for item in groupbuys %}
 
-<div class="card">
+    <div class="card">
 
-    <img src="{{ item.image_url }}" width="200">
-    <h3>{{ item.title }}</h3>
-    <p>{{ item.description }}</p>
-    <p>{{ item.deadline }}</p>
-    <p>{{ item.participants }} 人參與</p>
-    <a class="btn" href="{{ url_for('groupbuy_detail', groupbuy_id=item.id)}}">
-        查看團購
-    </a>
+        <img src="{{ item.image_url }}" width="200">
+        <h3><span>{{ item.title }}</span></h3>
+        <p class="price">NT$ {{ item.price }}</p>
+        <p class="info">
+            <span margin-top="3px"><i class="fa-regular fa-calendar"></i> {{ item.deadline }}</span>
+            <span><i class="fa-solid fa-user-group"></i> {{ item.participants }} 人參與</span>
+        </p>
+        <a class="btn" href="{{ url_for('groupbuy_detail', groupbuy_id=item.id)}}">
+            查看團購
+        </a>
 
+    </div>
+
+    {% endfor %}
 </div>
-
-<hr>
-
-{% endfor %}
 
 {% endblock %}

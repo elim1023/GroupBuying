@@ -7,6 +7,7 @@ from flask_caching import Cache
 from werkzeug.security import generate_password_hash, check_password_hash
 from application.models import db, User, GroupBuy, Order
 from application.helpers import *
+from datetime import datetime
 
 # app = Flask(__name__, template_folder=TEMPLATES_PATH)
 
@@ -135,9 +136,11 @@ def create_groupbuy():
         add_groupbuy(    
             request.form["title"],
             request.form["image_url"],
-            request.form["description"],
             request.form["product_url"],
-            request.form["deadline"],
+            request.form["description"],
+            request.form["price"],
+            # request.form["deadline"],
+            datetime.strptime(request.form["deadline"],"%Y-%m-%d").date(),
             request.form["delivery_method"],
             session["user_id"]
         )

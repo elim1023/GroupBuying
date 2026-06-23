@@ -72,8 +72,14 @@ class GroupBuy(db.Model):
         db.Text
     )
 
+    price = db.Column(
+        db.Integer,
+        nullable=False
+    )
+
     deadline = db.Column(
-        db.String(50)
+        db.Date,
+        # nullable=False
     )
 
     organizer_id = db.Column(

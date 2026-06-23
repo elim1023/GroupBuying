@@ -6,9 +6,8 @@
 
     <title>Group Buying</title>
 
-    <link rel="stylesheet"
-          href="{{ url_for('static',
-          filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
@@ -17,7 +16,7 @@
     <nav>
 
         <div class="menu-btn" onclick="toggleSidebar()">
-            ☰
+            <i class="fa-solid fa-bars"></i>
         </div>
 
         <div class="logo">
@@ -49,10 +48,10 @@
                         <br>
 
                         <small>
-                            {% if session["plan"]=="premium" %}
-                                Premium
-                            {% elif session["plan"]=="pro" %}
-                                Pro
+                            {% if session["plan"]=="pro" %}
+                                pro
+                            {% elif session["plan"]=="business" %}
+                                business
                             {% else %}
                                 免費方案
                             {% endif %}

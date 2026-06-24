@@ -43,6 +43,7 @@ def home():
 @app.route("/register", methods=["GET", "POST"])
 def register():
 
+    error = None
     if request.method == "POST":
 
         username = request.form["username"]
@@ -60,34 +61,33 @@ def register():
         ).first()
 
         if existing_user:
+            error = "此帳號或 Email 已存在"
 
-            return "帳號或 Email 已存在"
-
-        hashed_password = (
-            generate_password_hash(
-                password
+        else:
+            hashed_password = (
+                generate_password_hash(
+                    password
+                )
             )
-        )
 
-        user = User(
-            username=username,
-            email=email,
-            password_hash=hashed_password,
-            phone=phone
-        )
+            user = User(
+                username=username,
+                email=email,
+                password_hash=hashed_password,
+                phone=phone
+            )
 
-        db.session.add(user)
-        db.session.commit()
+            db.session.add(user)
+            db.session.commit()
 
-        return redirect("/login")
+            return redirect("/login")
 
-    return render_template(
-        "register.html"
-    )
+    return render_template("register.html", error=error)
 
 @app.route("/login", methods=["GET", "POST"])
 # @cache.cached()
 def login():
+    error = None
 
     if request.method == "POST":
 
@@ -99,25 +99,19 @@ def login():
         ).first()
 
         if not user:
+            error = "帳號不存在"
 
-            return "找不到帳號"
-
-        if not check_password_hash(
+        elif not check_password_hash(
             user.password_hash,
             password
         ):
-            return "密碼錯誤"
+            error = "Email 或密碼錯誤"
+        else:
+            session["user_id"] = user.id
+            session["username"] = user.username
+            return redirect(url_for("home"))
 
-        session["user_id"] = user.id
-        session["username"] = user.username
-
-        return redirect(
-            url_for("home")
-        )
-
-    return render_template(
-        "login.html"
-    )
+    return render_template("login.html", error=error)
 
 @app.route("/logout")
 def logout():

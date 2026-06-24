@@ -62,10 +62,10 @@ with app.app_context():
         ),
 
         GroupBuy(
-            title="亞尼克生乳捲, 三顆布丁",
+            title="亞尼克 三顆布丁生乳捲",
             image_url="https://photo.yannick.com.tw/photo/0101357/1.jpg",
             description="布丁",
-            price=150,
+            price=360,
             # deadline="剩餘10天",
             deadline=date(2026, 7, 6),
             organizer_id=1,

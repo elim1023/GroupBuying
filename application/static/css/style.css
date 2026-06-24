@@ -20,6 +20,13 @@ nav {
     box-sizing: border-box;
 }
 
+.error-message{
+    color:#e53935;
+    font-size:14px;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
 /* .container {
     padding: 40px;
 } */
@@ -134,10 +141,10 @@ button {
     text-decoration: none;
     background: linear-gradient(
         135deg,
-        #5b8cff,
-        #7d5fff
+        #fff540,
+        #ffe45f
     );
-    color: white;
+    color: black;
     padding: 14px 60px;
     border-radius: 12px;
     font-weight: bold;
@@ -276,6 +283,119 @@ button {
 .hidden {
     display: none;
 }
+
+
+/* 商品頁面 */
+.detail-container{
+    max-width:1000px;
+    margin:40px auto;
+}
+
+.product-section{
+    display:flex;
+    gap:50px;
+
+    background:white;
+    padding:30px;
+
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+.product-image{
+    flex:1;
+}
+
+.product-image img{
+    width:100%;
+    max-width:400px;
+
+    border-radius:12px;
+}
+
+.product-info{
+    flex:1.2;
+
+    display:flex;
+    flex-direction:column;
+}
+
+.product-info h1{
+    margin:0;
+    font-size:32px;
+}
+
+.price{
+    font-size:36px;
+    font-weight:bold;
+    color:#ff5a5f;
+
+    margin:20px 0;
+}
+
+.meta{
+    color:rgb(72, 45, 0);
+    line-height:2;
+}
+
+.product-info form{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+
+    margin-top:20px;
+}
+
+.product-info input,
+.product-info textarea{
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    font-size:16px;
+}
+
+/* .join-btn{
+    margin-top:15px;
+
+    padding:15px;
+
+    border:none;
+    border-radius:10px;
+
+    font-size:18px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    background:linear-gradient(
+        135deg,
+        #5b86ff,
+        #7c4dff
+    );
+
+    color:white;
+}
+
+.join-btn:hover{
+    transform:translateY(-2px);
+} */
+
+.detail-section{
+    margin-top:30px;
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+.detail-section h2{
+    margin-top:0;
+}
+
 
 /* 價格 */
 .pricing-container{

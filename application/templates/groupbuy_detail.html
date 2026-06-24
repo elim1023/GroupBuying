@@ -2,79 +2,86 @@
 
 {% block content %}
 
-<h1>
+<div class="detail-container">
 
-    {{ groupbuy.title }}
+    <!-- 上方 -->
+    <div class="product-section">
 
-</h1>
+        <!-- 左邊圖片 -->
+        <div class="product-image">
+            <img src="{{ groupbuy.image_url }}">
+        </div>
 
-<img
-    src="{{ groupbuy.image_url }}"
-    width="300"
->
+        <!-- 右邊資訊 -->
+        <div class="product-info">
 
-<p>
+            <h1>{{ groupbuy.title }}</h1>
 
-    {{ groupbuy.description }}
+            <div class="price">
+                $ {{ groupbuy.price }}
+            </div>
 
-</p>
+            <hr>
 
-<p>
+            <form method="POST">
 
-    截止日期： {{ groupbuy.deadline }}
+                <label>購買數量</label>
 
-</p>
+                <input
+                    type="number"
+                    name="quantity"
+                    min="1"
+                    value="1"
+                    required
+                >
 
-<p>
+                <label>匯款帳號後5碼</label>
 
-    參與人數： {{ groupbuy.participants }}
+                <input
+                    type="text"
+                    name="remark"
+                    maxlength="5"
+                    pattern="[0-9]{5}"
+                    required
+                ></input>
 
-</p>
+                <button class="btn" type="submit">
+                    我要跟團
+                </button>
 
-<p>
+            </form>
 
-    取貨方式： {{ groupbuy.delivery_method }}
+            <div class="meta">
+                <p><i class="fa-regular fa-calendar"></i>  收單日期：{{ groupbuy.deadline }}</p>
+            </div>
+        </div>
 
-</p>
+    </div>
 
+    <!-- 下方 -->
+    <div class="detail-section">
 
-<hr>
+        <h2>團購資訊</h2>
 
-<form method="POST">
+        <p>
+            <strong>取貨方式：</strong>
+            {{ groupbuy.delivery_method }}
+        </p>
 
-    <label>數量：</label>
+        <p>
+            <strong>目前參與人數：</strong>
+            {{ groupbuy.participants }} 人
+        </p>
+        
+        <hr>
 
-    <input
-        type="number"
-        name="quantity"
-        min="1"
-        value="1"
-        required
-    >
+        <h2>商品介紹</h2>
 
-    <br><br>
+        <p>
+            {{ groupbuy.description }}
+        </p>
 
-    <label>備註：</label>
+    </div>
 
-    <textarea
-        name="remark"
-    ></textarea>
-
-    <!-- <br><br> -->
-
-    <!-- <label>取貨資訊：</label> -->
-
-    <!-- <input
-        type="text"
-        name="delivery_info"
-    > -->
-
-    <br><br>
-
-    <button type="submit">
-        我要跟團
-    </button>
-
-</form>
-
+</div>
 {% endblock %}

@@ -6,71 +6,63 @@
 
 {% for order in orders %}
 
-<div class="card">
+<div class="order-row">
 
-    <h3>
+    <div class="order-product">
+        <img src="{{ order.groupbuy.image_url }}">
+        <span>{{ order.groupbuy.title }}</span>
+    </div>
 
-        {{ order.groupbuy.title }}
+    <div class="order-col">
+        數量：{{ order.quantity }}
+    </div>
 
-    </h3>
+    <div class="order-col">
+        匯款後5碼：
+        {{ order.remark or "-" }}
+    </div>
 
-    <p>
+    <div class="order-col">
+        {{ order.delivery_info or "-" }}
+    </div>
 
-        數量：
+    <div class="order-actions">
 
-        {{ order.quantity }}
+        <a href="{{ url_for(
+            'groupbuy_detail',
+            groupbuy_id=order.groupbuy.id
+        ) }}" class="order1">
+            查看商品
+        </a>
 
-    </p>
+        <a href="{{ url_for(
+            'edit_order',
+            order_id=order.id
+        ) }}" class="order2">
+            修改
+        </a>
 
-    <p>
-
-        匯款帳號後5碼：
-
-        {{ order.remark }}
-
-    </p>
-
-    <p>
-
-        取貨資訊：
-
-        {{ order.delivery_info }}
-
-    </p>
-
-    <a href="{{ url_for('groupbuy_detail', groupbuy_id=order.groupbuy.id) }}">
-        查看商品
-    </a>
-
-    <br>
-
-    <a href="{{ url_for('edit_order', order_id=order.id) }}">
-        修改訂單
-    </a>
-
-    <!-- <a href="{{ url_for('delete_order', order_id=order.id) }}" onclick="return confirm('確定要取消跟團嗎？')">
-        取消跟團
-    </a> -->
-    <form action="{{ url_for('delete_order', order_id=order.id) }}"
+        <form
+            action="{{ url_for(
+                'delete_order',
+                order_id=order.id
+            ) }}"
             method="POST"
             onsubmit="return confirm('確定要取消跟團嗎？')"
-    >
+        >
+            <button type="submit">
+                取消跟團
+            </button>
 
-        <button type="submit">取消跟團</button>
+        </form>
 
-    </form>
+    </div>
 
 </div>
 
-<hr>
-
 {% else %}
 
-<p>
-
-    尚未參與任何團購
-
-</p>
+<p>尚未參與任何團購</p>
 
 {% endfor %}
 

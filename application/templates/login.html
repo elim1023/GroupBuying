@@ -2,36 +2,60 @@
 
 {% block content %}
 
-<h2>登入</h2>
+<div class="auth-container">
 
-<form method="POST">
+    <div class="auth-card">
 
-    <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        required>
+        <h1 class="page_name">登入</h1>
 
-    <br><br>
+        <form method="POST">
 
-    <input
-        type="password"
-        name="password"
-        placeholder="密碼"
-        required>
+            <div class="input-group">
+                <label>Email</label>
 
-    <br><br>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="請輸入 Email"
+                    required
+                >
+            </div>
 
-    <button type="submit">
-        登入
-    </button>
+            <div class="input-group">
+                <label>密碼</label>
 
-    {% if error %}
-        <p class="error-message">
-            {{ error }}
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="請輸入密碼"
+                    required
+                >
+            </div>
+
+            {% if error %}
+                <p class="error-message">
+                    {{ error }}
+                </p>
+            {% endif %}
+
+            <button
+                class="auth-btn"
+                type="submit"
+            >
+                登入
+            </button>
+
+        </form>
+
+        <p class="auth-footer">
+            還沒有帳號？
+            <a href="{{ url_for('register') }}">
+                立即註冊
+            </a>
         </p>
-    {% endif %}
 
-</form>
+    </div>
+
+</div>
 
 {% endblock %}

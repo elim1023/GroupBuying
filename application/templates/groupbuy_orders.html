@@ -18,14 +18,9 @@
 
 <div class="card">
 
-    <h3>
-
-        {{ order.user.username }}
-
-    </h3>
+    <h3>{{ order.user.username }}</h3>
 
     <p>
-
         數量：
 
         {{ order.quantity }}
@@ -47,6 +42,10 @@
         {{ order.delivery_info }}
 
     </p>
+
+        <a href="{{ url_for('buyer_orders', user_id=order.user.id) }}">
+        查看交易紀錄
+    </a>
 
 </div>
 

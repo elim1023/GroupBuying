@@ -109,8 +109,10 @@ def login():
         else:
             session["user_id"] = user.id
             session["username"] = user.username
+            print(user.plan)
+            print(session.get("plan"))
             return redirect(url_for("home"))
-
+    
     return render_template("login.html", error=error)
 
 @app.route("/logout")
@@ -206,6 +208,28 @@ def groupbuy_orders(groupbuy_id):
     return render_template(
         "groupbuy_orders.html",
         groupbuy=groupbuy
+    )
+
+# 查看跟團者參與自已的其他團購
+@app.route("/buyer/<int:user_id>/orders")
+def buyer_orders(user_id):
+
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
+    orders = (
+        Order.query
+        .join(GroupBuy)
+        .filter(
+            Order.user_id == user_id,
+            GroupBuy.organizer_id == session["user_id"]
+        )
+        .all()
+    )
+
+    return render_template(
+        "buyer_orders.html",
+        orders=orders
     )
 
 # 修改自己的訂單

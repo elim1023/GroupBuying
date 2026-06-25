@@ -183,28 +183,73 @@ button {
     position:absolute;
     right:0;
     top:50px;
-    width:180px;
+    width:230px;
     background:white;
     border:1px solid #ddd;
     border-radius:10px;
     box-shadow:0 2px 10px rgba(0,0,0,0.15);
+    overflow:hidden;
 }
 
 .dropdown-menu a{
-    display:block;
-    padding:12px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 20px;
     text-decoration:none;
-    color:black;
+    color:#444;
 }
 
-.dropdown-menu a:hover{
-    background:#f3f3f3;
+.dropdown-menu a:not(.upgrade-btn):hover{
+    background:#f8f8f8;
 }
 
 .user-info{
-    padding:15px;
+    padding:25px;
     text-align:center;
     color: #000;
+}
+
+.plan-badge{
+    display:inline-block;
+    margin-top:12px;
+    padding:6px 14px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.plan-free{
+    background:#eee;
+    color:#666;
+}
+
+.plan-pro{
+    background:#ffe082;
+    color:#ff9800;
+}
+
+.plan-business{
+    background:#ffd6e8;
+    color:#e91e63;
+}
+
+.upgrade-btn{
+    margin:15px;
+
+    display:block;
+    text-align:center;
+
+    background:linear-gradient(
+        135deg,
+        #ffd54f,
+        #ffb300
+    );
+
+    color:white !important;
+    padding:12px;
+    border-radius:12px;
+    font-weight:bold;
 }
 
 .layout{
@@ -226,7 +271,7 @@ button {
 
 .sidebar a{
     display:block;
-    padding:15px 20px;
+    padding:8px 20px;
     text-decoration:none;
     color:black;
 }
@@ -282,6 +327,110 @@ button {
 
 .hidden {
     display: none;
+}
+
+
+/* Login 登入、註冊 */
+.auth-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:50px 20px;
+}
+
+.auth-card{
+    width:400px;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:15px;
+
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+
+.auth-card h1{
+    text-align:center;
+
+    margin-bottom:30px;
+
+    color:#333;
+}
+
+.input-group{
+    margin-bottom:20px;
+}
+
+.input-group label{
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#555;
+    font-weight:600;
+}
+
+.input-group input{
+    width:100%;
+
+    padding:12px;
+
+    border:1px solid #ddd;
+    border-radius:8px;
+
+    font-size:15px;
+
+    box-sizing:border-box;
+}
+
+.input-group input:focus{
+    outline:none;
+
+    border-color:#4CAF50;
+}
+
+.auth-btn{
+    width:100%;
+
+    padding:12px;
+
+    border:none;
+    border-radius:8px;
+
+    background:#c68c53;
+    color:white;
+
+    font-size:16px;
+    cursor:pointer;
+
+    margin-top:10px;
+}
+
+.auth-btn:hover{
+    background:#ac7339;
+}
+
+.error-message{
+    color:#e53935;
+
+    text-align:center;
+
+    margin:15px 0;
+}
+
+.auth-footer{
+    margin-top:25px;
+
+    text-align:center;
+
+    color:#666;
+}
+
+.auth-footer a{
+    text-decoration:none;
+    color:#d4aa1f;
 }
 
 
@@ -414,4 +563,91 @@ button {
 
 .premium{
     border:3px solid gold;
+}
+
+.order-row{
+    display:flex;
+    align-items:center;
+
+    gap:20px;
+
+    padding:15px 25px;
+    margin-bottom:15px;
+
+    background:white;
+
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.08);
+}
+
+.order-product{
+    width:300px;
+
+    display:flex;
+    align-items:center;
+
+    gap:15px;
+}
+
+.order-product img{
+    width:70px;
+    height:70px;
+
+    object-fit:cover;
+    border-radius:8px;
+}
+
+.order-product span{
+    font-weight:600;
+}
+
+.order-col{
+    flex:1;
+    text-align:center;
+    color:#555;
+}
+
+.order-actions{
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+.order-actions a,
+.order-actions button{
+    padding:8px 12px;
+
+    border:none;
+    border-radius:6px;
+
+    text-decoration:none;
+    cursor:pointer;
+}
+
+/* .order-actions a{
+    background:#40e0d0;
+    color:rgb(0, 0, 0);
+} */
+
+/* #7fffd4
+40e0d0
+*/
+
+.order1{
+    background:#7fffd4;
+    color:rgb(0, 0, 0);
+}
+
+.order2{
+    background:#ffe710;
+    color:rgb(0, 0, 0);
+}
+
+.order-actions button{
+    background:#ff402b;
+    color:white;
+}
+
+.order-actions form{
+    margin:0;
 }

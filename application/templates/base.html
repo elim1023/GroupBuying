@@ -28,7 +28,6 @@
         </div>
         <div class="user-menu">
             <div class="user-btn" onclick="toggleUserMenu()">
-                <!-- 👤 -->
                  <svg width="40" height="40" viewBox="0 0 120 120" fill="none"
                     xmlns="http://www.w3.org/2000/svg" display="block">
                     <circle cx="60" cy="60" r="55" stroke="#333" stroke-width="3"/>
@@ -44,26 +43,29 @@
                 
                 {% if "user_id" in session %}
                     <div class="user-info">
-                        {{ session["username"] }}
-                        <br>
-
-                        <small>
-                            {% if session["plan"]=="pro" %}
-                                pro
-                            {% elif session["plan"]=="business" %}
+                        <h3>{{ session["username"] }}</h3>
+                        
+                        {% if session["plan"]=="pro" %}
+                            <div class="plan-badge plan-pro">
+                                Pro
+                            </div>
+                        {% elif session["plan"]=="business" %}
+                            <div class="plan-badge plan-business">
                                 business
-                            {% else %}
-                                免費方案
-                            {% endif %}
-                        </small>
-                        <a href="{{ url_for('pricing') }}">
-                            升級方案
+                            </div>
+                        {% else %}
+                            <div class="plan-badge plan-free">
+                                Free
+                            </div>
+                        {% endif %}
+                        
+                        <a href="#">個人資料</a>
+                        <a href="#">設定</a>
+                        <a class="upgrade-btn" href="{{ url_for('pricing') }}">
+                                🚀 升級方案
                         </a>
                     </div>
                     <hr>
-
-                    <a href="#">個人資料</a>
-                    <a href="#">設定</a>
                     <a href="{{ url_for('logout') }}">登出</a>
 
                 {% else %}
@@ -79,7 +81,7 @@
             <div class="group">
 
             <div class="group-title" onclick="toggleGroup('buyer')">
-                消費者專區 ▾
+                <i class="fa-solid fa-cart-shopping"></i> 消費者專區 <i class="fa-solid fa-chevron-down"></i>
             </div>
 
             <div class="group-content" id="buyer">
@@ -91,7 +93,8 @@
         <div class="group">
 
             <div class="group-title" onclick="toggleGroup('seller')">
-                團購主專區 ▾
+                <i class="fa-solid fa-box-open"></i> 團購主專區 <i class="fa-solid fa-chevron-down"></i>
+                <!-- ▾ -->
             </div>
 
             <div class="group-content" id="seller">

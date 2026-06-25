@@ -2,50 +2,84 @@
 
 {% block content %}
 
-<h2>註冊</h2>
+<div class="auth-container">
 
-<form method="POST">
+    <div class="auth-card">
 
-    <input
-        type="text"
-        name="username"
-        placeholder="姓名"
-        required>
-    <br><br>
+        <h1 class="page_name">註冊</h1>
 
-    <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        required>
-    <br><br>
+        <form method="POST">
 
-    <input
-        type="password"
-        name="password"
-        placeholder="密碼"
-        required>
-    <br><br>
+            <div class="input-group">
+                <label>姓名</label>
 
-    <input
-        type="tel"
-        name="phone"
-        placeholder="手機"
-        maxlength="10"
-        pattern="[0-9]{10}"
-        required>
-    <br><br>
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="請輸入姓名"
+                    required
+                >
+            </div>
 
-    <button type="submit">
-        註冊
-    </button>
+            <div class="input-group">
+                <label>Email</label>
 
-    {% if error %}
-        <p class="error-message">
-            {{ error }}
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="請輸入 Email"
+                    required
+                >
+            </div>
+
+            <div class="input-group">
+                <label>密碼</label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="請輸入密碼"
+                    required
+                >
+            </div>
+
+            <div class="input-group">
+                <label>手機號碼</label>
+
+                <input
+                    type="tel"
+                    name="phone"
+                    placeholder="09xxxxxxxx"
+                    maxlength="10"
+                    pattern="09[0-9]{8}"
+                    required
+                >
+            </div>
+
+            {% if error %}
+                <p class="error-message">
+                    {{ error }}
+                </p>
+            {% endif %}
+
+            <button
+                class="auth-btn"
+                type="submit"
+            >
+                註冊
+            </button>
+
+        </form>
+
+        <p class="auth-footer">
+            已經有帳號？
+            <a href="{{ url_for('login') }}">
+                前往登入
+            </a>
         </p>
-    {% endif %}
 
-</form>
+    </div>
+
+</div>
 
 {% endblock %}

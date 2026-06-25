@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>購買紀錄</h1>
+
+{% for order in orders %}
+
+<div class="card">
+
+    <h3>{{ order.groupbuy.title }}</h3>
+
+    <p>
+        數量：
+        {{ order.quantity }}
+    </p>
+
+</div>
+
+{% endfor %}
+
+{% endblock %}

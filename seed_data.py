@@ -6,57 +6,57 @@ from datetime import date
 with app.app_context():
 
     data = [
-        User(
-            username = "Chopper",
-            email = "Chopper@gmail.com",
-            password_hash = generate_password_hash("Chopper"),
-            phone = "0123456789",
-            plan = "business"
-        ),
+        # User(
+        #     username = "Chopper",
+        #     email = "Chopper@gmail.com",
+        #     password_hash = generate_password_hash("Chopper"),
+        #     phone = "0123456789",
+        #     plan = "business"
+        # ),
 
-        User(
-            username = "Mary",
-            email = "Mary@gmail.com",
-            password_hash = generate_password_hash("Mary"),
-            phone = "123456789",
-        ),
+        # User(
+        #     username = "Mary",
+        #     email = "Mary@gmail.com",
+        #     password_hash = generate_password_hash("Mary"),
+        #     phone = "123456789",
+        # ),
 
-        User(
-            username = "Freen",
-            email = "Freen@gmail.com",
-            password_hash = generate_password_hash("Freen"),
-            phone = "0919980808",
-        ),
+        # User(
+        #     username = "Freen",
+        #     email = "Freen@gmail.com",
+        #     password_hash = generate_password_hash("Freen"),
+        #     phone = "0919980808",
+        # ),
 
-        User(
-            username = "Becky",
-            email = "Becky@gmail.com",
-            password_hash = generate_password_hash("Becky"),
-            phone = "0920021205",
-        ),
+        # User(
+        #     username = "Becky",
+        #     email = "Becky@gmail.com",
+        #     password_hash = generate_password_hash("Becky"),
+        #     phone = "0920021205",
+        # ),
 
-        User(
-            username = "Tom",
-            email = "Tom@gmail.com",
-            password_hash = generate_password_hash("Tom"),
-            phone = "0996378520",
-            plan = "Pro",
-        ),
+        # User(
+        #     username = "Tom",
+        #     email = "Tom@gmail.com",
+        #     password_hash = generate_password_hash("Tom"),
+        #     phone = "0996378520",
+        #     plan = "pro",
+        # ),
 
-        User(
-            username = "Sam",
-            email = "Sam@gmail.com",
-            password_hash = generate_password_hash("Sam"),
-            phone = "0959634870",
-            plan = "business",
-        ),
+        # User(
+        #     username = "Sam",
+        #     email = "Sam@gmail.com",
+        #     password_hash = generate_password_hash("Sam"),
+        #     phone = "0959634870",
+        #     plan = "business",
+        # ),
 
-        User(
-            username = "Sky",
-            email = "Sky@gmail.com",
-            password_hash = generate_password_hash("Sky"),
-            phone = "0920378520",
-        ),
+        # User(
+        #     username = "Sky",
+        #     email = "Sky@gmail.com",
+        #     password_hash = generate_password_hash("Sky"),
+        #     phone = "0920378520",
+        # ),
 
         GroupBuy(
             title="亞尼克 三顆布丁生乳捲",
@@ -64,7 +64,7 @@ with app.app_context():
             description="布丁",
             price=360,
             deadline=date(2026, 7, 6),
-            organizer_id=1,
+            organizer_id=5,
             participants=19,
             delivery_method="送貨到府"
         ),
@@ -75,7 +75,7 @@ with app.app_context():
             description="Costco零食代購\n1盒 X 14公克 X 20包",
             price=100,
             deadline=date(2026, 7, 10),
-            organizer_id=5,
+            organizer_id=9,
             participants=0,
             delivery_method="送貨到府"
         ),
@@ -87,7 +87,7 @@ with app.app_context():
             # https://www.buonissimo.com.tw/products/%E7%91%AA%E6%B2%99%E6%8B%89%E9%85%92%E9%A2%A8%E5%91%B3%E6%8F%90%E6%8B%89%E7%B1%B3%E8%98%87-%E5%A4%A7%E7%9B%92\n
             price=839,
             deadline=date(2026, 8, 16),
-            organizer_id=1,
+            organizer_id=5,
             participants=0,
             delivery_method="送貨到府"
         ),
@@ -98,7 +98,7 @@ with app.app_context():
             description="冷凍可保存2週、冷藏可保存4天",
             price=500,
             deadline=date(2026, 8, 2),
-            organizer_id=1,
+            organizer_id=5,
             participants=52,
             delivery_method="送貨到府"
         ),
@@ -109,7 +109,7 @@ with app.app_context():
             description="原產地：台灣",
             price=240,
             deadline=date(2026, 8, 23),
-            organizer_id=5,
+            organizer_id=9,
             participants=150,
             delivery_method="超商取貨"
         ),
@@ -120,7 +120,7 @@ with app.app_context():
             description="",
             price=50,
             deadline=date(2026, 7, 15),
-            organizer_id=6,
+            organizer_id=10,
             participants=15,
             delivery_method="超商取貨"
         ),
@@ -131,7 +131,7 @@ with app.app_context():
             description="",
             price=49,
             deadline=date(2026, 7, 30),
-            organizer_id=5,
+            organizer_id=9,
             participants=29,
             delivery_method="超商取貨"
         ),
@@ -142,7 +142,7 @@ with app.app_context():
             description="",
             price=115,
             deadline=date(2026, 8, 12),
-            organizer_id=1,
+            organizer_id=5,
             participants=129,
             delivery_method="超商取貨"
         ),
@@ -153,7 +153,7 @@ with app.app_context():
             description="",
             price=320,
             deadline=date(2026, 8, 8),
-            organizer_id=3,
+            organizer_id=7,
             participants=162,
             delivery_method="送貨到府"
         ),
@@ -164,7 +164,7 @@ with app.app_context():
             description="",
             price=480,
             deadline=date(2026, 7, 20),
-            organizer_id=1,
+            organizer_id=5,
             participants=20,
             delivery_method="送貨到府"
         ),
@@ -176,7 +176,7 @@ with app.app_context():
             price=2657,
             # deadline="剩餘12天",
             deadline=date(2026, 8, 12),
-            organizer_id=4,
+            organizer_id=9,
             participants=156,
             delivery_method="送貨到府"
         ),
@@ -184,5 +184,6 @@ with app.app_context():
 
     db.session.add_all(data)
     db.session.commit()
+    print(app.config["SQLALCHEMY_DATABASE_URI"])
 
     print("測試資料建立完成")

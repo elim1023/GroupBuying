@@ -122,26 +122,52 @@ def logout():
 
     return redirect("/")
 
+@app.route("/upgrade/<plan>")
+def upgrade(plan):
+
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+    user = User.query.get(session["user_id"])
+
+    if plan not in ["pro", "business"]:
+        return redirect(url_for("pricing"))
+    
+    user.plan = plan
+    db.session.commit()
+    session["plan"] = user.plan
+
+    return redirect(url_for("pricing"))
 
 @app.route("/create-groupbuy", methods=["GET", "POST"])
 def create_groupbuy():
     if "user_id" not in session:
         return redirect(url_for("login"))
     
-    if request.method == "POST":
-        add_groupbuy(    
-            request.form["title"],
-            request.form["image_url"],
-            request.form["product_url"],
-            request.form["description"],
-            request.form["price"],
-            # request.form["deadline"],
-            datetime.strptime(request.form["deadline"],"%Y-%m-%d").date(),
-            request.form["delivery_method"],
-            session["user_id"]
-        )
-        return redirect(url_for("home"))
-    return render_template("create_groupbuy.html")
+    user = User.query.get(session["user_id"])
+
+    groupbuy_count = GroupBuy.query.filter_by(
+        organizer_id=user.id
+    ).count()
+    print(user.plan)
+    print(groupbuy_count)
+    if user.plan == "free" and groupbuy_count >= 3:
+        return render_template("create_groupbuy.html", error="免費方案每月最多建立 3 個團購，請升級 Pro。")
+    
+    else:
+        if request.method == "POST":
+            add_groupbuy(    
+                request.form["title"],
+                request.form["image_url"],
+                request.form["product_url"],
+                request.form["description"],
+                request.form["price"],
+                # request.form["deadline"],
+                datetime.strptime(request.form["deadline"],"%Y-%m-%d").date(),
+                request.form["delivery_method"],
+                session["user_id"]
+            )
+            return redirect(url_for("home"))
+        return render_template("create_groupbuy.html")
 
 @app.route("/groupbuy/<int:groupbuy_id>", methods=["GET", "POST"])
 def groupbuy_detail(groupbuy_id):

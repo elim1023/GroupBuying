@@ -25,9 +25,10 @@
         <p>Excel 匯出</p>
         <p>自動通知服務</p>
 
-        <button>
-            升級 Premium
-        </button>
+        <a class="upgrade-btn"
+        href="{{ url_for('upgrade', plan='pro') }}">
+            升級 Pro
+        </a>
 
         <div>
         </div>
@@ -42,9 +43,10 @@
         <p>消費者行為分析</p>
         <p>專屬客服支援</p>
 
-        <button>
-            升級 Premium
-        </button>
+        <a class="upgrade-btn"
+        href="{{ url_for('upgrade', plan='business') }}">
+            升級 Business
+        </a>
 
     </div>
 

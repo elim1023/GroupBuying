@@ -2,77 +2,89 @@
 
 {% block content %}
 
-<h1 class="page_name">建立團購</h1>
+<div class="create-container">
 
-<form method="POST">
+    <div class="create-card">
 
-    <p>團購名稱</p>
+        <h1>建立團購</h1>
 
-    <input
-        type="text"
-        name="title"
-        required
-    >
+        <form method="POST">
 
-    <p>商品圖片網址</p>
+            <div class="form-group">
+                <label>團購名稱</label>
+                <input type="text"
+                       name="title"
+                       placeholder="例如：iPhone 17 團購"
+                       required>
+            </div>
 
-    <input
-        type="text"
-        name="image_url"
-    >
+            <div class="form-group">
+                <label>商品圖片網址</label>
+                <input type="text"
+                       name="image_url"
+                       placeholder="https://...">
+            </div>
 
-    <p>商品網站連結</p>
+            <div class="form-group">
+                <label>商品網站連結</label>
+                <input type="text"
+                       name="product_url"
+                       placeholder="https://...">
+            </div>
 
-    <input
-        type="text"
-        name="product_url"
-    >
+            <div class="form-group">
+                <label>商品介紹</label>
+                <textarea
+                    name="description"
+                    rows="5"
+                    placeholder="例如：
+滿 10000 元 95 折
+滿 20000 元 9 折
+滿 30000 元 88 折">
+                </textarea>
+            </div>
 
-    <p>商品介紹</p>
+            <div class="row">
 
-    <textarea
-        name="description"
-    ></textarea>
+                <div class="form-group half">
+                    <label>價格</label>
+                    <input type="number"
+                           name="price"
+                           placeholder="NT$ 1000">
+                </div>
 
-    <p>價格</p>
+                <div class="form-group half">
+                    <label>截止日期</label>
+                    <input type="date"
+                           name="deadline">
+                </div>
 
-    <input
-        type="number"
-        name="price"
-        placeholder="NT$"
-    >
-    
-    <p>截止日期</p>
-    <input type="date" name="deadline">
+            </div>
 
-    <p>取貨方式</p>
+            <div class="form-group">
+                <label>取貨方式</label>
 
-    <select
-        name="delivery_method"
-    >
+                <select name="delivery_method">
 
-        <option>
-            面交
-        </option>
+                    <option>面交</option>
+                    <option>超商</option>
+                    <option>宅配</option>
 
-        <option>
-            超商
-        </option>
+                </select>
+            </div>
 
-        <option>
-            宅配
-        </option>
+            <button class="submit-btn" type="submit">
+                建立團購
+            </button>
 
-    </select>
+        </form>
 
-    <br><br>
+    </div>
 
-    <button type="submit">
-
-        建立團購
-
-    </button>
-
-</form>
+</div>
 
 {% endblock %}
+
+<style>
+    
+</style>

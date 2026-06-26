@@ -14,13 +14,13 @@ from datetime import datetime
 load_dotenv()
 app = Flask(__name__)
 
-app.config[
-    'SQLALCHEMY_DATABASE_URI'
-] = 'sqlite:///groupbuy.db'
-
 # app.config[
 #     'SQLALCHEMY_DATABASE_URI'
-# ] = os.environ["DATABASE_URL"]
+# ] = 'sqlite:///groupbuy.db'
+
+app.config[
+    'SQLALCHEMY_DATABASE_URI'
+] = os.environ["DATABASE_URL"]
 
 app.config[
     "SQLALCHEMY_TRACK_MODIFICATIONS"

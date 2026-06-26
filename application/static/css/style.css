@@ -651,3 +651,103 @@ button {
 .order-actions form{
     margin:0;
 }
+
+/* 創建團購 */
+.create-container{
+    display:flex;
+    justify-content:center;
+    margin-top:40px;
+}
+
+.create-card{
+    width:700px;
+    background:white;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,.08);
+}
+
+.create-card h1{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    margin-bottom:25px;
+}
+
+.form-group label{
+    margin-bottom:8px;
+    font-weight:600;
+    color:#444;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+    padding:14px;
+    border:1px solid #ddd;
+    border-radius:12px;
+
+    font-size:15px;
+
+    transition:.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+    border-color:#4A90E2;
+    outline:none;
+
+    box-shadow:
+        0 0 0 3px rgba(74,144,226,.15);
+}
+
+.row{
+    display:flex;
+    gap:20px;
+}
+
+.half{
+    flex:1;
+}
+
+textarea{
+    resize:vertical;
+}
+
+.submit-btn{
+    width:100%;
+    padding:16px;
+
+    font-size:18px;
+    font-weight:bold;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:linear-gradient(
+        135deg,
+        #ffd54f,
+        #ffb300
+    );
+
+    color:white;
+
+    transition:.3s;
+}
+
+.submit-btn:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(255,179,0,.35);
+}
